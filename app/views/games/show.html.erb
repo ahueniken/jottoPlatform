@@ -1,0 +1,20 @@
+<% provide(:title, @game.id) %>
+<h1> <%= @game.id %> </h1>
+<h1> <%= @game.user1 %></h1>
+<h1> <%= @game.user2 %></h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@game) do |f| %>
+    <% if current_user.id == @game.user1 %>
+      <%= f.label :word1 %>
+      <%= f.text_field :word1 %>
+      <%= f.submit "Submit your secret word", class: "btn btn-large btn-primary" %>
+    <% elsif current_user.id == @game.user2 %>
+      <%= f.label :word2 %>
+      <%= f.text_field :word2 %>
+      <%= f.submit "Submit your secret word", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <% end %>
+  </div>
+</div>
