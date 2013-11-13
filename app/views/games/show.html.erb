@@ -1,9 +1,16 @@
 <% provide(:title, @game.id) %>
-<h1> <%= @game.id %> </h1>
-<h1> <%= @game.user1 %></h1>
-<h1> <%= @game.user2 %></h1>
+<h1>Game Number: <%= @game.id %> </h1>
+<div class="row">
+  <div class="span6">
+   
+    <h1> <%= @game.user1 %></h1>
+  </div>
+  <div class="span6">
+    <h1> <%= @game.user2 %></h1>
+  </div>
+</div>
 
-<% if @setupflag == false %>
+<% if setupCompleted == false %>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@game) do |f| %>
@@ -21,17 +28,38 @@
 </div>
 <% else %>
 <div class="row">
-  <h1> Guess your opponents secret word! </h1>
-  <div class="span6 offset3">
-  <%= form_for(@game) do |f| %>
-    <% if current_user.id == @game.user1 %>
-      <%= f.text_field :p1guesses %>
-      <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
-    <% elsif current_user.id == @game.user2 %>
-      <%= f.text_field :p2guesses %>
-      <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
-    <% end %>
-  <% end %>
+  <div class="span6">
+    <ul>
+      <%  if @p1guessarray != nil %>
+      <%  @p1guessarray.each do |guess| %>
+         <li><%= guess %> </li>
+      <%  end %>
+      <%  end %>
+    </ul>
+  </div>
+  <div class="span6">
+    <ul>
+      <% if @p2guessarray != nil %>
+      <%  @p2guessarray.each do |guess| %>
+        <li><%= guess %> </li>
+      <%  end %>
+      <%  end %>
+    </ul>
+  </div>
 </div>
+  <div class="row">
+    <h1> Guess your opponents secret word! </h1>
+
+    <div class="span6 offset3">
+    <%= form_for(@game) do |f| %>
+      <% if current_user.id == @game.user1 %>
+        <%= f.text_field :p1guesses %>
+        <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
+      <% elsif current_user.id == @game.user2 %>
+        <%= f.text_field :p2guesses %>
+        <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
+      <% end %>
+    <% end %>
+    </div>
 </div>
 <% end %>
