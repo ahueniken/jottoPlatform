@@ -27,39 +27,45 @@
   </div>
 </div>
 <% else %>
-<div class="row">
-  <div class="span6">
-    <ul>
-      <%  if @p1guessarray != nil %>
-      <%  @p1guessarray.each do |guess| %>
-         <li><%= guess %> </li>
-      <%  end %>
-      <%  end %>
-    </ul>
-  </div>
-  <div class="span6">
-    <ul>
-      <% if @p2guessarray != nil %>
-      <%  @p2guessarray.each do |guess| %>
-        <li><%= guess %> </li>
-      <%  end %>
-      <%  end %>
-    </ul>
-  </div>
-</div>
   <div class="row">
-    <h1> Guess your opponents secret word! </h1>
+    <div class="span6">
+      <ul>
+        <%  if p1guessResults != nil %>
+        <%  p1guessResults.each do |name, result| %>
+           <li><%= "#{name}: #{result}" %> </li>
+        <%  end %>
+        <%  end %>
+      </ul>
+    </div>  
+    <div class="span6">
+      <ul>
+         <%  if p2guessResults != nil %>
+        <%  p2guessResults.each do |name, result| %>
+           <li><%= "#{name}: #{result}" %> </li>
+        <%  end %>
+        <%  end %>
+      </ul>
+    </div>  
+  </div>
+  <% if gameDone == false %>
+    <div class="row">
+      <h1> Guess your opponents secret word! </h1>
 
-    <div class="span6 offset3">
-    <%= form_for(@game) do |f| %>
-      <% if current_user.id == @game.user1 %>
-        <%= f.text_field :p1guesses %>
-        <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
-      <% elsif current_user.id == @game.user2 %>
-        <%= f.text_field :p2guesses %>
-        <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
+      <div class="span6 offset3">
+      <%= form_for(@game) do |f| %>
+        <% if current_user.id == @game.user1 %>
+          <%= f.text_field :p1guesses %>
+          <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
+        <% elsif current_user.id == @game.user2 %>
+          <%= f.text_field :p2guesses %>
+          <%= f.submit "Submit a guess", class: "btn btn-large btn-primary" %>
+        <% end %>
       <% end %>
-    <% end %>
+      </div>
     </div>
-</div>
+  <% else %>
+    <div class="span6 offset3">
+      <h1> And the winner is: <%= @game.winner %> </h1>
+    </div>
+  <% end %>
 <% end %>
