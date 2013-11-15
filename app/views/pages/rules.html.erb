@@ -1,8 +1,9 @@
-<div class="center hero-unit">
-	<h1> Rules </h1>
-	<p> Your goal is to guess your opponents secret 5-letter word </p>
-	<p> Whoever guesses their opponents word first wins </p>
-	<p> Only the words in this text document are valid: to be added</p>
+<div class="hero-unit">
+	<h1 class="center add-bottom"> Rules </h1>
+	<p class="add-top"> Your goal is to guess your opponents secret 5-letter word, before they guess yours.</p>
+
+	<p> Only the words in this text document are allowed:</p>
+	<%= link_to "Text Document", "wordlist.txt", class: "btn btn-primary add-bottom" %>
 	<p> After every guess you will be told the number of perfect matches. This means that if the secret word is FLOAT, and you say ALOFT it will return 3. If you say BLOAT it will return 4. </p>
 	<p> At 4:30 we will take the 8 highest ranking players on the leaderboard and have them play off in a bracket to declare a champion </p>
 </div>

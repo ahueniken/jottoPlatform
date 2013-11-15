@@ -9,5 +9,5 @@ module GamesHelper
  	end
  	return count
  end
-
+ 
 end

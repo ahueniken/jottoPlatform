@@ -44,7 +44,6 @@ class GamesController < ApplicationController
         updateTies(@game.user1)
       end
     end
-
   end
 
   def create
@@ -61,13 +60,19 @@ class GamesController < ApplicationController
    
     if !@@setupCompleted
       if current_user.id == @game.user1
-        if @game.update_attribute(:word1, params[:game][:word1]) 
+        if @game.update_attributes(:word1 => params[:game][:word1].upcase) 
           flash[:success] = params[:game][:word1]
+          redirect_to @game
+        else 
+          flash[:error] = "Invalid Word"
           redirect_to @game
         end
       elsif current_user.id == @game.user2
-        if @game.update_attribute(:word2, params[:game][:word2])
+        if @game.update_attributes(:word2 => params[:game][:word2].upcase)
           flash[:success] = params[:game][:word2]
+          redirect_to @game
+        else 
+          flash[:error] = "Invalid Word"
           redirect_to @game
         end
       end
@@ -86,7 +91,7 @@ class GamesController < ApplicationController
         else 
           guesses = params[:game][:p1guesses]
         end
-        if @game.update_attribute(:p1guesses, guesses) 
+        if @game.update_attributes(:p1guesses => guesses.upcase) 
           flash[:success] = params[:game][:p1guesses]
           redirect_to @game
         end
@@ -103,7 +108,7 @@ class GamesController < ApplicationController
         else 
           guesses = params[:game][:p2guesses]
         end
-        if @game.update_attribute(:p2guesses, guesses)
+        if @game.update_attributes(:p2guesses => guesses.upcase)
           flash[:success] = params[:game][:p2guesses]
           redirect_to @game
         end
