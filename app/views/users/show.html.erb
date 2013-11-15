@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <h1> <%= @user.name %></h1>
-<h2><%= @user.email %></h2>
+<h2><%= "#{@user.wins} - #{@user.losses} - #{@user.ties}" %></h2>
 
 <div class="hero-unit">
 	<h1 class="center"> Games </h1>

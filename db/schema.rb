@@ -11,18 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131115001745) do
+ActiveRecord::Schema.define(:version => 20131115051940) do
 
   create_table "games", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "user1"
     t.integer  "user2"
     t.string   "word1"
     t.string   "word2"
+    t.integer  "winner"
+    t.text     "p1GuessResults"
+    t.text     "p2GuessResults"
     t.string   "p1guesses"
     t.string   "p2guesses"
-    t.integer  "winner"
   end
 
   create_table "games_users", :id => false, :force => true do |t|

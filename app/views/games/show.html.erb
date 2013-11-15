@@ -2,7 +2,6 @@
 <h1>Game Number: <%= @game.id %> </h1>
 <div class="row">
   <div class="span6">
-   
     <h1> <%= @game.user1 %></h1>
   </div>
   <div class="span6">
@@ -30,8 +29,8 @@
   <div class="row">
     <div class="span6">
       <ul>
-        <%  if p1guessResults != nil %>
-        <%  p1guessResults.each do |name, result| %>
+        <%  if @game.p1GuessResults != nil %>
+        <%   @game.p1GuessResults.each do |name, result| %>
            <li><%= "#{name}: #{result}" %> </li>
         <%  end %>
         <%  end %>
@@ -39,15 +38,15 @@
     </div>  
     <div class="span6">
       <ul>
-         <%  if p2guessResults != nil %>
-        <%  p2guessResults.each do |name, result| %>
+         <%  if  @game.p2GuessResults != nil %>
+        <%   @game.p2GuessResults.each do |name, result| %>
            <li><%= "#{name}: #{result}" %> </li>
         <%  end %>
         <%  end %>
       </ul>
     </div>  
   </div>
-  <% if gameDone == false %>
+  <% if @gameDone == false %>
     <div class="row">
       <h1> Guess your opponents secret word! </h1>
 

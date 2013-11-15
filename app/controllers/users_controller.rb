@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user]) 
     if @user.save
-      initializeRecords
+      self.class.initializeRecords(@user.id)
       sign_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
@@ -19,5 +19,13 @@ class UsersController < ApplicationController
     end
   end
 
- 
+  def UsersController.initializeRecords(userId)
+    @user = User.find_by_id(userId)
+    @user.update_attribute(:wins, 0)
+    @user.update_attribute(:losses, 0)
+    @user.update_attribute(:ties, 0)
+    logger.debug "------------------------------------"
+    Rails.logger.info(@user.errors.messages.inspect)
+  end
+
 end
