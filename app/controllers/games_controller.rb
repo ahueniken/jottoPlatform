@@ -40,14 +40,17 @@ class GamesController < ApplicationController
         @game.update_attribute(:winner, @game.user2) 
         updateWinner(@game.user2)
         updateLoser(@game.user1)
+        updateElo(@game.user2, @game.user1)
       elsif @game.p1GuessResults.length < @game.p2GuessResults.length
         @game.update_attribute(:winner, @game.user1) 
         updateWinner(@game.user1)
         updateLoser(@game.user2)
+        updateElo(@game.user1, @game.user2)
       else
         @game.update_attribute(:winner, -1) 
         updateTies(@game.user2)
         updateTies(@game.user1)
+        updateEloTie(@game.user1, @game.user2)
       end
     end
   end

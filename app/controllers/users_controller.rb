@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @user.update_attribute(:wins, 0)
     @user.update_attribute(:losses, 0)
     @user.update_attribute(:ties, 0)
+    @user.update_attribute(:elo, 1000)
     logger.debug "------------------------------------"
     Rails.logger.info(@user.errors.messages.inspect)
   end
