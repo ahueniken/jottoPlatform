@@ -25,19 +25,26 @@ class GamesController < ApplicationController
       @p2guessarray = @game.p2guesses.split(',')
     end
 
-    if @@p1Done && @@p2Done
+    if @game.winner != nil || @@p1Done == true && @@p2Done == true
       @@gameDone = true
     end
 
-    if @@gameDone
+    if @@gameDone && @game.winner == nil
       if @p2guessarray.length < @p1guessarray.length
         @game.update_attribute(:winner, @game.user2) 
+        updateWinner(@game.user2)
+        updateLoser(@game.user1)
       elsif @p1guessarray.length < @p2guessarray.length
         @game.update_attribute(:winner, @game.user1) 
+        updateWinner(@game.user1)
+        updateLoser(@game.user2)
       else
         @game.update_attribute(:winner, -1) 
+        updateTies(@game.user2)
+        updateTies(@game.user1)
       end
     end
+
   end
 
   def create
