@@ -1,3 +1,16 @@
 <% provide(:title, @user.name) %>
 <h1> <%= @user.name %></h1>
 <h2><%= @user.email %></h2>
+
+<div class="hero-unit">
+	<h1 class="center"> Games </h1>
+	<% @games = Game.where("user1 = ? OR user2 = ?", @user.id, @user.id) %>
+	<ul>
+	<% if @games != nil %>
+		<%  @games.each do |game| %>
+			<% player1 = User.find_by_id(game.user1).name %>
+			<% player2 = User.find_by_id(game.user2).name %>
+	    	<li><%=link_to "#{player1} vs #{player2}", :controller => "games", :action => "show", :id => game.id  %></a> </li>
+	    <%  end %>
+    <% end %>
+	</ul>
