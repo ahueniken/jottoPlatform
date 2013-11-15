@@ -3,11 +3,13 @@ JottoPlatform::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'pages#home'
-  match '/about',   to: 'pages#about',   via: 'get'
   match '/signup',   to: 'users#new',   via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/newgame', to: 'games#new', via: 'get'
+  match '/standings', to: 'pages#standings', via: 'get'
+  match '/rules', to: 'pages#rules', via: 'get'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

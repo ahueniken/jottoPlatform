@@ -19,6 +19,9 @@
             <ul class="nav pull-right">
               <li><%= link_to "Home", root_path %></li>
               <li><%= link_to "About", about_path %></li>
+              <li><%= link_to "Standings", standings_path %></li>
+              <li><%= link_to "New Game", newgame_path %></li>
+              <li><%= link_to "Rules", rules_path %></li>
               <% if signed_in? %>
                 <li><%= link_to "Users", '#' %></li>
                 <li id="fat-menu" class="dropdown">

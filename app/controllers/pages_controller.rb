@@ -2,6 +2,10 @@ class PagesController < ApplicationController
   def home
   end
 
-  def about
+  def standings
   end
+
+  def rules
+  end
+
 end

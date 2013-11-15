@@ -1,0 +1,11 @@
+<div class="center hero-unit">
+	<h1> Leaderboard </h1>
+	<ol>
+	<% @users = User.all.sort_by{|x| [x.wins, x.ties]}.reverse %>
+	<% if @users != nil %>
+		<%  @users.each do |user| %>
+	    	<li><%= "#{user.name} #{user.wins} - #{user.ties} - #{user.losses}" %> </li>
+	    <%  end %>
+    <% end %>
+	</ol>
+</div>
