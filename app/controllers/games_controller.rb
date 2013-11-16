@@ -91,10 +91,10 @@ class GamesController < ApplicationController
       if current_user.id == @game.user1
         if (@game.p1GuessResults != nil)
           guesses = @game.p1GuessResults 
-          guesses[params[:game][:p1guesses]] = compareWords(params[:game][:p1guesses], @game.word2)
+          guesses[params[:game][:p1guesses]] = compareWords(params[:game][:p1guesses].upcase, @game.word2.upcase)
         else 
           guesses = Hash.new
-          guesses[params[:game][:p1guesses]] = compareWords(params[:game][:p1guesses], @game.word2)
+          guesses[params[:game][:p1guesses]] = compareWords(params[:game][:p1guesses].upcase, @game.word2.upcase)
         end
         if @game.update_attributes(:p1GuessResults => guesses) 
           flash[:success] = params[:game][:p1guesses]
@@ -104,10 +104,10 @@ class GamesController < ApplicationController
       elsif current_user.id == @game.user2
        if (@game.p2GuessResults != nil)
           guesses = @game.p2GuessResults 
-          guesses[params[:game][:p2guesses]] = compareWords(params[:game][:p2guesses], @game.word1)
+          guesses[params[:game][:p2guesses]] = compareWords(params[:game][:p2guesses].upcase, @game.word1.upcase)
         else 
           guesses = Hash.new
-          guesses[params[:game][:p2guesses]] = compareWords(params[:game][:p2guesses], @game.word1)
+          guesses[params[:game][:p2guesses]] = compareWords(params[:game][:p2guesses].upcase, @game.word1.upcase)
         end
         if @game.update_attributes(:p2GuessResults => guesses)
           flash[:success] = params[:game][:p2guesses]
