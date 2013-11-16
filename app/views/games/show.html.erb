@@ -63,8 +63,12 @@
       </div>
     </div>
   <% else %>
-    <div class="span6 offset3">
-      <h1> And the winner is: <%= @game.winner %> </h1>
+    <div class="center">
+      <% if @game.winner == -1 %>
+      <h1> And it's a tie! </h1>
+      <% else %>
+      <h1> And the winner is: <%= User.find_by_id(@game.winner).name %> </h1>
+      <% end %>
     </div>
   <% end %>
 <% end %>
