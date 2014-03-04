@@ -2,4 +2,4 @@
 
 This is for Hacker Academy's November Dojo. See www.hackeracademy.org for info about HA, or https://jotto-platform-hacker-academy.herokuapp.com/ as the project may still be running.
 
-It's a platform designed to allow two people to play a game of Jotto, and in the case of our dojo, people were challenged with writing their own AI to do the best.
+It's a platform designed to allow two people to play a game of Jotto, and in the case of our dojo, people were challenged with writing their own AI to compete with their peers.
